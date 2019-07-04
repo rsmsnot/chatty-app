@@ -5,13 +5,13 @@
     body {
       background: white;
       color: black;
-      font-family: 'Open Sans', sans-serif;
+      font-family: 'Cabin', Helvetica, Arial, sans-serif;
       font-size: 14px;
       margin: 70px 0;
     }
 
     .chatbar {
-      background: tomato;
+      background: #00BFFF;
       border-top: 1px solid black;
       bottom: 0;
       display: flex;
@@ -29,6 +29,7 @@
       line-height: 40px;
       margin: 5px;
       padding: 0 9px;
+      border-radius: 25px;
     }
 
     .chatbar-message {
@@ -65,12 +66,14 @@
     }
 
     .message-username {
+      margin-left: 50px;
       flex: 2;
+      font-size: 1.3em;
       font-weight: 700;
     }
 
     .navbar {
-      background: tomato;
+      background: #00BFFF;
       border-bottom: 1px solid black;
       height: 60px;
       left: 0;
@@ -81,17 +84,22 @@
     }
 
     .navbar-brand {
+      font-family: 'Lobster', Georgia, Times, serif;
       color: inherit;
-      display: block;
-      float: left;
       font-weight: 700;
-      font-size: 28px;
+      font-size: 40px;
       height: 60px;
       line-height: 60px;
       padding: 0 10px;
       text-decoration: none;
+      width: 100%;
+    }
+
+    .title-container {
+      text-align: center;
     }
 
     .nameChange {
       margin-left: 50px;
+      font-style: italic;
     }
