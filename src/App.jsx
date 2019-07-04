@@ -11,15 +11,9 @@ class App extends Component {
       webSocket: null
     }
     this.sendMessage = this.sendMessage.bind(this);
+    this.changeUsername=this.changeUsername.bind(this)
   }
-
-  // addNewMessage(message) {
-  //   const messages = this.state.messages.concat(message);
-  //   this.setState({ messages: messages });
-  // }
-
-
-
+  
   sendMessage(message) {
     const newMessageObj = {
       type: 'message',
@@ -29,6 +23,10 @@ class App extends Component {
     this.state.webSocket.send(JSON.stringify(newMessageObj));
 
   }
+
+  changeUsername(event) {
+    this.setState({ currentUser: event })
+}
 
 
   componentDidMount() {
@@ -40,9 +38,6 @@ class App extends Component {
 
     webSocket.onmessage =  (event) => {
       const parsedData = JSON.parse(event.data);
-      console.log(parsedData);
-      // console.log(parsedData.username.name);
-      // console.log(parsedData.content);
       const messages = this.state.messages.concat(parsedData);
       this.setState({ messages: messages });
     }
@@ -61,7 +56,7 @@ class App extends Component {
         <nav className="navbar">
           <a href="/" className="navbar-brand">Chatty</a>
         </nav>
-        <ChatBar currentUser={this.state.currentUser} sendMessage={this.sendMessage} />
+        <ChatBar currentUser={this.state.currentUser} sendMessage={this.sendMessage} changeUsername={this.changeUsername} />
         <MessageList messages={this.state.messages} />
       </div>
     );

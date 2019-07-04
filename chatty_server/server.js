@@ -30,7 +30,7 @@ wss.on('connection', (ws) => {
 
     ws.onmessage = function (message) {
         let messageObj = JSON.parse(message.data);
-        console.log(messageObj.type);
+        // console.log(messageObj.type);
         console.log('User ' + messageObj.username + ' says ' + messageObj.content);
         if (messageObj.type === 'message') {
             const newMessage = {
@@ -38,7 +38,7 @@ wss.on('connection', (ws) => {
                 username: messageObj.username,
                 content: messageObj.content,
             }
-            console.log(newMessage);
+            // console.log(newMessage);
             broadcastMessages(newMessage);
         }
     }
