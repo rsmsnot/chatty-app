@@ -19,9 +19,8 @@ class ChatBar extends React.Component {
                 username: this.props.currentUser.name
             }
             console.log(event.key, 'pressed');
-            console.log(messageContent);
-            this.props.addNewMessage(messageContent);
-            event.target.value = ' ';
+            this.props.sendMessage(messageContent);
+            event.target.value = '';
             // this.props.addNewMessage(this.state.username, this.state.content);
             // this.setState({
             //     username: this.state.user,
