@@ -39,6 +39,10 @@
       flex: 2;
     }
 
+    .userCount {
+      float: right;
+    }
+
     .message {
       display: flex;
       padding: 5px;
@@ -86,4 +90,8 @@
       line-height: 60px;
       padding: 0 10px;
       text-decoration: none;
+    }
+
+    .nameChange {
+      margin-left: 50px;
     }
