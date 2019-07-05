@@ -44,4 +44,5 @@ npm run lint
 * [babel-loader](https://github.com/babel/babel-loader)
 * [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
 
-![gif-1](https://gfycat.com/ifr/OrangeIncredibleHalibut)
+![gif-1](/readme-gifs/gif1.gif)
+![gif-2](/readme-gifs/gif2.gif)
