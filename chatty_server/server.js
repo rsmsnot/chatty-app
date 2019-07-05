@@ -35,7 +35,7 @@ wss.on('connection', (ws) => {
 
     ws.on('message', (message) => {
         let messageObj = JSON.parse(message);
-        console.log(messageObj);
+        // console.log(messageObj);
         // console.log(messageObj.type);
         // console.log('User ' + messageObj.username + ' says ' + messageObj.content);
         switch (messageObj.type) {
@@ -59,6 +59,15 @@ wss.on('connection', (ws) => {
                 console.log(newNotification);
                 broadcastMessages(newNotification)
                 break;
+
+            case 'postImage':
+                const newImage = {
+                    type: 'incomingImage',
+                    id: UUID(),
+                    url: messageObj.url
+                }
+                // console.log(newImage);
+                broadcastMessages(newImage);
         }
     });
 

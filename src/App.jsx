@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import ChatBar from './ChatBar.jsx'
 import MessageList from './MessageList.jsx'
 import Notification from './Notifications.jsx';
+import Image from './Images.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -13,7 +14,8 @@ class App extends Component {
       webSocket: null
     }
     this.sendMessage = this.sendMessage.bind(this);
-    this.changeUsername = this.changeUsername.bind(this)
+    this.changeUsername = this.changeUsername.bind(this);
+    this.sendImage = this.sendImage.bind(this);
   }
 
   sendMessage(message) {
@@ -38,6 +40,15 @@ class App extends Component {
       this.setState({ currentUser: event })
     }
   }
+  sendImage(url) {
+    const newImageObj = {
+      type: 'postImage',
+      username: this.state.currentUser,
+      url: url.url
+    }
+    // console.log(newImageObj);
+    this.state.webSocket.send(JSON.stringify(newImageObj));
+  }
 
 
   componentDidMount() {
@@ -49,7 +60,6 @@ class App extends Component {
 
     webSocket.onmessage = (event) => {
       const parsedData = JSON.parse(event.data);
-      // console.log(parsedData);
       switch (parsedData.type) {
         case 'incomingMessage':
           const incomingMessage = {
@@ -74,6 +84,19 @@ class App extends Component {
           this.setState({ messages: notifications });
           break;
 
+        case 'incomingImage':
+          const incomingImage = {
+            type: 'image',
+            id: parsedData.id,
+            url: parsedData.url
+          }
+          const images = this.state.messages.concat(incomingImage);
+          console.log(images);
+          this.setState({ messages: images});
+          break;
+
+
+
         case 'updateUserCount':
           this.setState(parsedData);
           this.setState({ userCount: parsedData.connectedUsers });
@@ -83,26 +106,18 @@ class App extends Component {
       }
 
     }
-    // setTimeout(() => {
-    //   // Add a new message to the list of messages in the data store
-    //   const newMessage = { id: 3, username: 'Michelle', content: 'Hello there!' };
-    //   const messages = this.state.messages.concat(newMessage)
-    //   // Update the state of the app component.
-    //   // Calling setState will trigger a call to render() in App and all child components.
-    //   this.setState({ messages: messages })
-    // }, 3000);
   }
   render() {
     return (
       <div>
         <nav className="navbar">
           <div className="title-container">
-          <a href="/" className="navbar-brand">Chatty</a>
-          <p className="userCount">Connected users: {this.state.connectedUsers}</p>
+            <a href="/" className="navbar-brand">Chatty</a>
+            <p className="userCount">Connected users: {this.state.connectedUsers}</p>
 
           </div>
         </nav>
-        <ChatBar currentUser={this.state.currentUser} sendMessage={this.sendMessage} changeUsername={this.changeUsername} />
+        <ChatBar currentUser={this.state.currentUser} sendMessage={this.sendMessage} changeUsername={this.changeUsername} sendImage={this.sendImage} />
         <MessageList messages={this.state.messages} />
       </div>
     );

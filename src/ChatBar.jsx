@@ -9,6 +9,7 @@ class ChatBar extends React.Component {
         };
         this.inputSubmit = this.inputSubmit.bind(this);
         this.nameChange = this.nameChange.bind(this);
+        this.submitImage = this.submitImage.bind(this);
     }
 
     nameChange(event) {
@@ -34,12 +35,25 @@ class ChatBar extends React.Component {
         }
     }
 
+    submitImage(event) {
+        if (event.key === 'Enter') {
+            const imageUrl = {
+                username: this.props.currentUser,
+                url: event.target.value
+            }
+            console.log(event.key, 'pressed');
+            this.props.sendImage(imageUrl);
+            event.target.value = '';
+        }
+    }
+
 
     render() {
         return (
             <footer className="chatbar">
                 <input className="chatbar-username" placeholder="Your Name (Optional)" type="text" onBlur={this.nameChange} />
                 <input className="chatbar-message" placeholder="Type a message and hit ENTER" onKeyPress={this.inputSubmit} />
+                <input className="chatbar-image" placeholder="Submit an image/gif url and hit ENTER" onKeyPress={this.submitImage} />
             </footer>
         )
     }
