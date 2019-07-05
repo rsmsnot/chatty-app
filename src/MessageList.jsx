@@ -13,20 +13,29 @@ class MessageList extends React.Component {
     render() {
         const allMessages = this.props.messages.map(message => {
             if (message.type === 'message') {
-                return <Message
-                    key={message.id}
-                    username={message.username}
-                    content={message.content} />
+                return <div>
+                    <Message
+                        key={message.id}
+                        username={message.username}
+                        content={message.content} />
+                    <hr />
+                </div>
+
             }
             if (message.type === 'notification') {
                 return <Notification
-                    key={message.id}
-                    content={message.content} />
+                        key={message.id}
+                        content={message.content} />
+                
             }
-            if(message.type === 'image') {
-                return <Image
-                key={message.id}
-                content={message.url} />
+            if (message.type === 'image') {
+                return <div>
+                    <Image
+                        key={message.id}
+                        content={message.url} 
+                        username={message.username}/>
+                    <hr />
+                </div>
             }
         });
 

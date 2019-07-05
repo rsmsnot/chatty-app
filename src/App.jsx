@@ -88,11 +88,12 @@ class App extends Component {
           const incomingImage = {
             type: 'image',
             id: parsedData.id,
+            username: parsedData.username,
             url: parsedData.url
           }
           const images = this.state.messages.concat(incomingImage);
           console.log(images);
-          this.setState({ messages: images});
+          this.setState({ messages: images });
           break;
 
 

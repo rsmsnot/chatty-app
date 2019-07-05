@@ -64,6 +64,7 @@ wss.on('connection', (ws) => {
                 const newImage = {
                     type: 'incomingImage',
                     id: UUID(),
+                    username: messageObj.username,
                     url: messageObj.url
                 }
                 // console.log(newImage);
