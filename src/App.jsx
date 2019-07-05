@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 import ChatBar from './ChatBar.jsx'
 import MessageList from './MessageList.jsx'
-import Notification from './Notifications.jsx';
-import Image from './Images.jsx';
+
+
 
 class App extends Component {
   constructor(props) {
@@ -24,7 +24,6 @@ class App extends Component {
       username: this.state.currentUser,
       content: message.content
     }
-    console.log(newMessageObj);
     this.state.webSocket.send(JSON.stringify(newMessageObj));
 
   }
@@ -35,7 +34,6 @@ class App extends Component {
         type: 'postNotification',
         content: `${this.state.currentUser} changed their name to ${event}`
       }
-      console.log(notification);
       this.state.webSocket.send(JSON.stringify(notification));
       this.setState({ currentUser: event })
     }
@@ -46,7 +44,6 @@ class App extends Component {
       username: this.state.currentUser,
       url: url.url
     }
-    // console.log(newImageObj);
     this.state.webSocket.send(JSON.stringify(newImageObj));
   }
 
@@ -57,7 +54,6 @@ class App extends Component {
       console.log('Connected to server');
     };
     this.setState({ webSocket })
-
     webSocket.onmessage = (event) => {
       const parsedData = JSON.parse(event.data);
       switch (parsedData.type) {
@@ -67,7 +63,6 @@ class App extends Component {
             id: parsedData.id,
             username: parsedData.username,
             content: parsedData.content
-
           }
           const messages = this.state.messages.concat(incomingMessage);
           this.setState({ messages: messages });
@@ -95,8 +90,6 @@ class App extends Component {
           console.log(images);
           this.setState({ messages: images });
           break;
-
-
 
         case 'updateUserCount':
           this.setState(parsedData);

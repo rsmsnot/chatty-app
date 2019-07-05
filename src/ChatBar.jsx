@@ -21,8 +21,7 @@ class ChatBar extends React.Component {
         }
         this.props.changeUsername(newUsername);
     }
-
-
+    
     inputSubmit(event) {
         if (event.key === 'Enter') {
             const messageContent = {
@@ -54,7 +53,6 @@ class ChatBar extends React.Component {
             event.target.value = '';
         }
     }
-
 
     render() {
         return (

@@ -24,16 +24,16 @@ class MessageList extends React.Component {
             }
             if (message.type === 'notification') {
                 return <Notification
-                        key={message.id}
-                        content={message.content} />
-                
+                    key={message.id}
+                    content={message.content} />
+
             }
             if (message.type === 'image') {
                 return <div>
                     <Image
                         key={message.id}
-                        content={message.url} 
-                        username={message.username}/>
+                        content={message.url}
+                        username={message.username} />
                     <hr />
                 </div>
             }
