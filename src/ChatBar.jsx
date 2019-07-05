@@ -29,6 +29,10 @@ class ChatBar extends React.Component {
                 content: event.target.value,
                 username: this.props.currentUser
             }
+            if (messageContent.content.length < 1) {
+                alert('Please enter a comment');
+                return;
+            }
             console.log(event.key, 'pressed');
             this.props.sendMessage(messageContent);
             event.target.value = '';
@@ -40,6 +44,10 @@ class ChatBar extends React.Component {
             const imageUrl = {
                 username: this.props.currentUser,
                 url: event.target.value
+            }
+            if (imageUrl.url.length < 1) {
+                alert('Please enter a valid URL');
+                return;
             }
             console.log(event.key, 'pressed');
             this.props.sendImage(imageUrl);

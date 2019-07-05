@@ -30,15 +30,17 @@
       line-height: 40px;
       margin: 5px;
       padding: 0 9px;
-      border-radius: 25px;
+      border-radius: 15px;
     }
 
     .chatbar-message {
       flex: 6;
+      overflow-wrap: break-word;
     }
 
     .chatbar-username {
       flex: 2;
+      overflow-wrap: break-word;
     }
     .chatbar-image {
       flex: 2;
@@ -67,6 +69,7 @@
 
     .message-content {
       flex: 8;
+      font-size: 1.3em;
     }
 
     .message-username {
